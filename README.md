@@ -81,4 +81,5 @@ export JBOSS_HOME=~/jboss-eap-7.4 && mvn clean install && cp target/mycalcwebapp
 Accessing the app
 ===
 
-Open up <http://localhost/mycalcwebapp/>. If it works, the value of the `uid` variable, "foo", is shown at the bottom of the page, or "undefined" otherwise.
+Open up <http://localhost/mycalcwebapp/> and click on the "Show uid" submit button.
+If it works, the value of the `uid` variable, "foo", is shown at the bottom of the page.
