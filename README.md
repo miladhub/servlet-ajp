@@ -44,19 +44,20 @@ docker exec apache-ajp apachectl restart
 Deploying the servlet
 ===
 
-[Download JBoss EAP 7.4.0](https://developers.redhat.com/content-gateway/file/jboss-eap-7.4.0.zip)
-and extract it to `~/jboss-eap-7.4/`.
+[Download WildFly 24.0.1](https://download.jboss.org/wildfly/24.0.1.Final/wildfly-24.0.1.Final.zip)
+and extract it to `~/wildfly-24.0.1.Final/`.
 
 Issue the following command from a CLI tab:
 
 ```bash
-export JBOSS_HOME=~/jboss-eap-7.4 && $JBOSS_HOME/bin/standalone.sh
+export JBOSS_HOME=~/wildfly-24.0.1.Final && $JBOSS_HOME/bin/standalone.sh \
+  -Dio.undertow.ajp.allowedRequestAttributesPattern="uid"
 ```
 
 Issue the following command from another tab:
 
 ```bash
-export JBOSS_HOME=~/jboss-eap-7.4 && $JBOSS_HOME/bin/jboss-cli.sh
+export JBOSS_HOME=~/wildfly-24.0.1.Final && $JBOSS_HOME/bin/jboss-cli.sh
 [disconnected /] connect
 [standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=ajp:add(port=8009)
 {
@@ -75,11 +76,11 @@ export JBOSS_HOME=~/jboss-eap-7.4 && $JBOSS_HOME/bin/jboss-cli.sh
 Build and deploy the servlet:
 
 ```bash
-export JBOSS_HOME=~/jboss-eap-7.4 && mvn clean install && cp target/mycalcwebapp.war $JBOSS_HOME/standalone/deployments
+export JBOSS_HOME=~/wildfly-24.0.1.Final && mvn clean install && cp target/*.war $JBOSS_HOME/standalone/deployments
 ```
 
 Accessing the app
 ===
 
-Open up <http://localhost/mycalcwebapp/> and click on the "Show uid" submit button.
-If it works, the value of the `uid` variable, "foo", is shown at the bottom of the page.
+Open up <http://localhost/uidapp/> and click on the "Show uid" submit button.
+If it works, the value of the `uid` variable, "foo", is shown.
