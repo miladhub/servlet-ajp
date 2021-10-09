@@ -4,9 +4,6 @@ Sample Servlet-AJP integration
 Sample servlet reading an `HttpServletRequest` attribute set by Apache as environment variable and
 processed as an attribute by the `mod_proxy_ajp` Apache module.
 
-The AJP integration is currently working on JBoss EAP 7.3.0, but it does *not* work
-on neither Wildfly 24.0.1 nor JBoss EAP 7.4.0.
-
 # How it works
 
 Apache sets an "environment variable" via `SetEnv`:
