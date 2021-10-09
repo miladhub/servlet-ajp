@@ -7,8 +7,7 @@ processed as an attribute by the `mod_proxy_ajp` Apache module.
 The AJP integration is currently working on JBoss EAP 7.3.0, but it does *not* work
 on neither Wildfly 24.0.1 nor JBoss EAP 7.4.0.
 
-How it should work
-===
+# How it works
 
 Apache sets an "environment variable" via `SetEnv`:
 
@@ -25,14 +24,7 @@ At this point, the servlet can read the `uid` attribute from the incoming reques
 request.getAttribute("uid")
 ```
 
-In this sample project, the JavaScript code displays the `uid` on the page:
-
-```javascript
-document.getElementById("uid").innerHTML = json.uid;
-```
-
-Installing Apache with AJP
-===
+# Installing Apache with AJP
 
 ```bash
 docker rm -f apache-ajp 
@@ -41,8 +33,7 @@ docker cp httpd.conf apache-ajp:/usr/local/apache2/conf
 docker exec apache-ajp apachectl restart
 ```
 
-Deploying the servlet
-===
+# Deploying the servlet
 
 [Download WildFly 24.0.1](https://download.jboss.org/wildfly/24.0.1.Final/wildfly-24.0.1.Final.zip)
 and extract it to `~/wildfly-24.0.1.Final/`.
@@ -79,8 +70,7 @@ Build and deploy the servlet:
 export JBOSS_HOME=~/wildfly-24.0.1.Final && mvn clean install && cp target/*.war $JBOSS_HOME/standalone/deployments
 ```
 
-Accessing the app
-===
+# Accessing the app
 
 Open up <http://localhost/uidapp/> and click on the "Show uid" submit button.
 If it works, the value of the `uid` variable, "foo", is shown.
